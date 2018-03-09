@@ -40,6 +40,10 @@ grad = zeros(size(theta));
 h_x = sigmoid(X * theta);
 term1 = -y .* log(h_x);
 term2 = (1-y) .* log(1 - h_x);
+y
+h_x
+term1
+term2
 J = (1 * sum(term1 - term2) / m) + lambda/(2*m) * sum( theta(2:length(theta)) .^ 2);
 
 grad(1) = X(:,1)' * (h_x - y) / m;

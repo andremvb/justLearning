@@ -38,7 +38,7 @@ A = magic(9)
 sum(A,1)            %Suma de columnas
 sum(A,2)            %Suma de filas
 
-temp = pinv(A)
+temp = pinv(A)      %Invesrsa aproximada
 
 
 
