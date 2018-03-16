@@ -53,11 +53,28 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+%     f   X               12x2                        192  double
+%     f   Xval            21x2                        336  double
+%   a     argn             5x31                       155  char
+%     f   error_train     12x1                         96  double
+%     f   error_val       12x1                         96  double
+%     f   lambda           1x1                          8  double
+%         m                1x1                          8  double
+%     f   y               12x1                         96  double
+%     f   yval            21x1                        168  double
 
+n = size(Xval, 1);
 
+X = [ones(m,1) X];
+Xval = [ones(n,1) Xval];
 
-
-
+for i = 1:m
+    [theta] = trainLinearReg(X(1:i,:), y(1:i,:), lambda);
+    % error_train(i) = sum(((X(1:i,:) * theta) - y(1:i,:)) .^ 2) / (2 * i);
+    % error_val(i) = sum(((Xval * theta) - yval) .^ 2) / (2 * n);
+    error_train(i) = linearRegCostFunction(X(1:i,:), y(1:i,:), theta, 0);
+    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);
+end
 
 % -------------------------------------------------------------
 

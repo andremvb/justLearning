@@ -20,11 +20,20 @@ grad = zeros(size(theta));
 %
 
 
+%     f   J           1x1                          8  double
+%     f   X          12x2                        192  double
+%   a     argn        4x15                        60  char
+%     f   grad        2x1                         16  double
+%     f   lambda      1x1                          8  double
+%         m           1x1                          8  double
+%     f   theta       2x1                         16  double
+%     f   y          12x1                         96  double
 
+h = X * theta;
+J = sum((h - y) .^ 2)/(2 * m) + lambda / (2 * m) * sum(theta(2:end) .^ 2);
 
-
-
-
+grad = (X' * (h - y)) ./ m;
+grad(2:end) = grad(2:end) + (theta(2:end) .* lambda ./ m);
 
 
 
